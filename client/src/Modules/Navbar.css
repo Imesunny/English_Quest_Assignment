@@ -1,0 +1,24 @@
+nav {
+    background-color:purple;
+    color: white;
+    padding: 10px 0;
+  }
+  
+  .container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navele {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  .nav-link:hover {
+    color: yellow;
+  }
+  
