@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Modules/Booklist.css";
+import AddBooks from "./AddBooks";
+import { useNavigate } from "react-router-dom";
 
 const BookList = () => {
+    const Navigate = useNavigate();
   const [books, setBooks] = useState([]);
   const [newBooks, setNewBooks] = useState([]);
   const [oldBooks, setOldBooks] = useState([]);
   const [selectedRole, setSelectedRole] = useState("");
+  const [render, setRender] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -57,8 +61,19 @@ const BookList = () => {
     }
   };
 
+  const handleAddBook = () => {
+    setRender(true);
+    Navigate("/addBook");
+  };
+
   return (
     <div>
+      {selectedRole === "CREATOR" && (
+        <button onClick={handleAddBook} className="add-book-btn">
+          Add Book
+        </button>
+      )}
+      {render && <AddBooks fetchData={fetchData} />}
       <h2>All Books</h2>
       <div className="book-table">
         <table>
@@ -93,8 +108,8 @@ const BookList = () => {
       </div>
 
       <div className="button-container">
-        <button onClick={fetchNewBooks}>Fetch New Books</button>
-        <button onClick={fetchOldBooks}>Fetch Old Books</button>
+        <button onClick={fetchNewBooks}>New Books</button>
+        <button onClick={fetchOldBooks}>Old Books</button>
       </div>
 
       <h2>New Books (Last 10 minutes)</h2>

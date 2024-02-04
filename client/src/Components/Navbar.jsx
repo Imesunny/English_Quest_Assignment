@@ -15,13 +15,13 @@ const Navbar = () => {
             SignUp
           </NavLink>
 
-          <NavLink to="/addBook" className="navele">
+          {/* <NavLink to="/addBook" className="navele">
             Add Books
 
           </NavLink>
           <NavLink to="/booklist" className="navele">
             Booklist
-          </NavLink>
+          </NavLink> */}
         </div>
       </nav>
     </div>
