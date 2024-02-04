@@ -14,12 +14,13 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/user/login", {
+      const response = await axios.post(`/user/login`, {
         username: username,
         password,
       });
 
       const result = response.data;
+      console.log(result, "result");
       console.log(result.message, "Login successful");
 
       toast.info(result.message, {
@@ -27,13 +28,15 @@ const Login = () => {
       });
       const token = result.token;
 
-      const { roles } = result;
       localStorage.setItem("token", token);
-      localStorage.setItem("roles", JSON.stringify(roles));
       console.log(token, "Token");
 
       Navigate("/booklist");
     } catch (error) {
+
+        toast.info("Wrong Crediantials, Please try again!!", {
+            position: "top-center",
+          });
       console.error("Error during login:", error.message);
     }
   };

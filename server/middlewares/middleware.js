@@ -2,13 +2,14 @@ const jwt = require("jsonwebtoken");
 
 const checkToken = (req, res, next) => {
   const responseToken = req.headers.authorization;
+
+  if (!responseToken) {
+    return res.status(401).json({ error: "Unauthorized Access" });
+  }
+
   const token = responseToken.split(" ")[1];
 
   console.log("Received token:", token);
-
-  if (!token) {
-    return res.status(401).json({ error: "Unauthorized Access" });
-  }
 
   if (req.path === "/user/register" || req.path === "/user/login") {
     return next();

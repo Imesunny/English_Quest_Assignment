@@ -4,18 +4,24 @@ const BookModel = require("../models/books.model");
 const { checkRole, checkToken } = require("../middlewares/middleware");
 const BookRouter = express.Router();
 
-BookRouter.post("/add",checkToken,checkRole(["CREATOR"]), async (req, res) => {
-  try {
-    const { title, author } = req.body;
-    const book = await BookModel.create({ title, author });
-    res.json(book);
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
+BookRouter.post(
+  "/add",
+  checkToken,
+  checkRole(["CREATOR"]),
+  async (req, res) => {
+    try {
+      const { title, author } = req.body;
+      const book = await BookModel.create({ title, author });
+      res.json(book);
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   }
-});
+);
 
 BookRouter.get(
-  "/books",
+  "/",
+  checkToken,
   checkRole(["CREATOR", "VIEW_ALL"]),
   async (req, res) => {
     try {
@@ -27,18 +33,23 @@ BookRouter.get(
   }
 );
 
-BookRouter.delete("/books/:id", checkRole(["CREATOR"]), async (req, res) => {
-  try {
-    const book = await BookModel.findByIdAndDelete(req.params.id);
-    res.json(book);
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
+BookRouter.delete(
+  "/:id",
+  checkToken,
+  checkRole(["CREATOR"]),
+  async (req, res) => {
+    try {
+      const book = await BookModel.findByIdAndDelete(req.params.id);
+      res.json(book);
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   }
-});
+);
 
 //additional API:
 
-BookRouter.get("/books/new", async (req, res) => {
+BookRouter.get("/new", async (req, res) => {
   const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
   try {
     const newBooks = await BookModel.find({
@@ -50,7 +61,7 @@ BookRouter.get("/books/new", async (req, res) => {
   }
 });
 
-BookRouter.get("/books/old", async (req, res) => {
+BookRouter.get("/old", async (req, res) => {
   const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
   try {
     const oldBooks = await BookModel.find({

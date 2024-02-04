@@ -16,17 +16,19 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/user/register", {
+      const response = await axios.post(`/user/register`, {
         username,
         password,
         roles: [selectedRole],
       });
 
+      console.log(selectedRole,"from Signup");
       const result = response.data;
       console.log(result.message, "user registration successful");
       toast.info(result.message, {
         position: "top-center",
       });
+      localStorage.setItem("selectedRole", selectedRole);
       Navigate("/login");
     } catch (error) {
       console.error("Error during registration:", error.message);

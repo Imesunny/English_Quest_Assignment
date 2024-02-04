@@ -5,8 +5,15 @@ const { checkToken, checkRole } = require("./middlewares/middleware");
 const UserRouter = require("./routes/user.routes");
 const BookRouter = require("./routes/book.routes");
 const app = express();
+const cors = require("cors");
+
 const PORT = 8080;
 
+app.use(
+    cors({
+      origin: "*",
+    })
+  );
 app.use(express.json());
 app.use(
   morgan(":method :url :status :response-time ms - :res[content-length]")

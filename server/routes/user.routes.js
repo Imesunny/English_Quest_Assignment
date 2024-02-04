@@ -20,10 +20,10 @@ UserRouter.post("/register", async (req, res) => {
 //working
 
 UserRouter.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
-    const is_User = await UserModel.findOne({ email });
+    const is_User = await UserModel.findOne({ username });
 
     if (is_User) {
       const hashed_password = is_User.password;
