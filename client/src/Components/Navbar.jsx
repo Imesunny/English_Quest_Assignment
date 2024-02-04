@@ -23,7 +23,7 @@ const Navbar = () => {
             Login
           </NavLink>
 
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleLogout} style={{backgroundColor:"red"}}>Logout</button>
 
           {/* <NavLink to="/addBook" className="navele">
             Add Books

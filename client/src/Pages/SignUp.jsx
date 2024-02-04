@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Modules/Forms.css";
+import "../Modules/Signup.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ const SignUp = () => {
         roles: [selectedRole],
       });
 
-      console.log(selectedRole,"from Signup");
+      console.log(selectedRole,"from-Signup");
       const result = response.data;
       console.log(result.message, "user registration successful");
       toast.info(result.message, {
@@ -37,7 +37,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <form onSubmit={handleRegistration} className="formss">
+      <form onSubmit={handleRegistration} className="formss-signup">
         <h2>User Registration</h2>
         <label>
           Username:

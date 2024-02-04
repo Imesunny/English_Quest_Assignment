@@ -1,20 +1,20 @@
-.formss {
+.formss-signup {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: light black;
-    background-color: gray;
+    background-color:gray;
     margin-top: 20px;
   }
   
-  .formss label {
+  .formss-signup label {
     display: block;
     margin-bottom: 8px;
   }
   
-  .formss input {
+  .formss-signup input {
     width: 100%;
     padding: 8px;
     margin-bottom: 16px;
@@ -22,11 +22,13 @@
   }
 
   
-  .formss input[type="submit"] {
+  .formss-signup input[type="submit"] {
     background-color: #4caf50;
     color: white;
     cursor: pointer;
     
   }
 
- 
+  .formss-signup input[type="radio"] {
+    margin-right: 8px;
+  }
