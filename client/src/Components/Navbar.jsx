@@ -1,19 +1,29 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-import '../Modules/Navbar.css'
+import "../Modules/Navbar.css";
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("selectedRole");
+
+    // Redirect to Signup page
+    navigate("/");
+  };
   return (
     <div>
       <nav>
         <div className="container">
+          <NavLink to="/" className="navele">
+            SignUp
+          </NavLink>
           <NavLink to="/login" className="navele">
             Login
           </NavLink>
 
-          <NavLink to="/" className="navele">
-            SignUp
-          </NavLink>
+          <button onClick={handleLogout}>Logout</button>
 
           {/* <NavLink to="/addBook" className="navele">
             Add Books
