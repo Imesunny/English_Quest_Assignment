@@ -53,6 +53,7 @@ const BookList = () => {
   };
 
   const handleDeleteBook = async (id) => {
+    alert('Sure, you want to delete this?')
     try {
       await axios.delete(`/books/${id}`);
       fetchData();
